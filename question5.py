@@ -21,17 +21,27 @@ class Node(object):
 def question5(ll, m):
   if not ll or not m:
     return None
+
   q = deque()
   q.append(ll.data)
+  # traverses the linked list keeping m values on the queue
   while ll.next:
     ll = ll.next
     q.append(ll.data)
     if len(q) > m:
       q.popleft()
+
+  # if m is larger than the linked list
+  if len(q) < m:
+    return None
+
   return q.popleft()    
 
 
 print question5(None, None)
+# None
+
+print question5(Node(4), 2)
 # None
 
 nodes = [Node(i) for i in xrange(5)]

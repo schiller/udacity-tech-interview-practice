@@ -1,0 +1,46 @@
+Question 1
+First I count the occurrences of each letter in t;
+Then I iterate through s taking t-sized steps, checking at each step if the letter at that position belongs to t. If the letter does not belong, there is no need to check the previous letters.
+If a letter belongs to t, then I search left and right for an anagram of t. First I go left left-enqueing (it is a double queue) letters and decrementing the letter count until the next letter count is 0. If I haven't found the anagram yet, I go right. If the next letter has a letter count of 0, I check if I have found the anagram. If not, I try left-dequeing a letter and incrementing its letter count and then try going right again. I go right at most the length of t.
+
+Efficiency (worst case):
+- time: O(len(s)) - len(s)/len(t) steps * 2 len(t) left and right search
+- space: O(len(t)) - t-sized double queue
+
+
+Question 2
+I iterate through the string a. For each letter, I check if there are repeated letters to its right. The letter or repeated letters become my palindrome center.
+For each center, I check if the letters on left and right right are the same. When I reach a pair of different letters or the string ends, I check if this palindrome is larger than the largest one I've found, and replace it if necessary.
+
+Efficiency (average case):
+- time: O(len(a)) - One loop through the string.
+- space: O(1) - No auxiliary structures.
+
+
+Question 3
+If I divide the graph in two subgraphs, among all edges that connect the two parts, only the edge with the smallest weight belongs to the minimum spanning tree (mst).
+With this in mind, I sort all edges by ascending weight and iterate them. If the edge does not connect two vertices that are already on my mst, I add it.
+By the end of the iteration the mst is built.
+
+Efficiency (worst case):
+Be n the number of edges.
+- time: O(n * log(n)) - The sorting has O(n * log(n))
+- space: O(n) - I keep the edges list for sorting and the new mst, both with size m.
+
+
+Question 4
+If n1 and n2 are on opposite sides of the root, then the root is the least common ancestor (lca).
+If they are on the same side, I pick the one with the largest value difference from the root (let's call it n2, with no loss of generality). Then I go up one node at a time until the current value crosses the value of n1. When it happens, the previous node is the lca.
+
+Efficiency (worst case):
+- time: O(n), where n is the number of nodes. - Considering the case where I need to visit every node of the tree.
+- space: O(1) - No auxiliary structures.
+
+
+Question 5
+I traverse the linked list and, for every link that I visit, I enque its value, always keeping the queue size equal to m. When the traversal is finished, the oldest value in the queue is the mth value from the end.
+
+Efficiency:
+- time: O(n), where n is the lenght of the linked list. - I iterate through the list once.
+- space: O(m) - One m-sized queue.
+

@@ -7,8 +7,10 @@ from collections import deque
 
 def question1(s, t):
     if s is not None and t is not None:
+        # empty string is substring to any string
         if t == "":
             return True
+
         t_count = get_letter_dict(t)
         # iterate through s taking len(t) steps
         for i in xrange(len(t) - 1, len(s), len(t)):
@@ -43,9 +45,11 @@ def find_substring(s, i, t_count, len_t):
                 break
         else:
             break
+
     # check if anagram was found
     if len(q) == len_t:
         return True
+
     # now walk right from the initial letter
     # replace exceding left letters with right letters
     j = i + 1
@@ -68,16 +72,15 @@ def find_substring(s, i, t_count, len_t):
             j += 1
         else:
             return False
+
     # check if anagram was found
     if len(q) == len_t:
         return True
+        
     return False
 
 
 print question1(None, None)
-# False
-
-print question1("", None)
 # False
 
 print question1("", "")
