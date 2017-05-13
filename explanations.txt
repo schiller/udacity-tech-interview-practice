@@ -40,7 +40,7 @@ Efficiency (worst case):
 Question 5
 I traverse the linked list and, for every link that I visit, I enque its value, always keeping the queue size equal to m. When the traversal is finished, the oldest value in the queue is the mth value from the end.
 
-Efficiency:
+Efficiency (worst case):
 - time: O(n), where n is the lenght of the linked list. - I iterate through the list once.
 - space: O(m) - One m-sized queue.
 
