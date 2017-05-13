@@ -24,4 +24,50 @@
 # and the answer would be 3.
 
 def question4(T, r, n1, n2):
-  return 0
+  if not T or r is None or n1 is None or n2 is None:
+    return None
+  if (n1 <= r and n2 >= r) or (n1 >= r and n2 <= r):
+    return r
+  if n1 == n2:
+    return n1
+
+  if abs(n2 - r) < abs(n1 - r):
+    aux = n1
+    n1 = n2
+    n2 = aux
+
+  lca = n2
+  n2 = get_parent(T, lca)
+  while abs(n2 - r) > abs(n1 - r):
+    lca = n2
+    n2 = get_parent(T, lca)
+  return lca
+
+def get_parent(T, n):
+  for idx, row in enumerate(T):
+    if row[n] == 1:
+      return idx
+  return None
+
+
+print question4(None, None, None, None)
+# None
+
+print question4([[0, 1, 0, 0, 0],
+                 [0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0],
+                 [1, 0, 0, 0, 1],
+                 [0, 0, 0, 0, 0]],
+                3,
+                1,
+                4)
+# 3
+
+print question4([[0, 0, 1, 0],
+                 [0, 0, 0, 0],
+                 [0, 1, 0, 1],
+                 [0, 0, 0, 0]],
+                0,
+                1,
+                3)
+# 2
